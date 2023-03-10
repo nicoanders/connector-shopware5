@@ -162,7 +162,7 @@ class CustomerOrder extends DataController
                             $swDetail['taxRate'] = 0.0;
                         }
 
-                        $precision = 4;
+                        $precision = 2;
 
                         // Type (mode)
                         switch ((int)$swDetail['mode']) {
@@ -174,7 +174,6 @@ class CustomerOrder extends DataController
                             */
                             case 2:
                                 $swDetail['type'] = CustomerOrderItem::TYPE_COUPON;
-                                $precision = 2;
                                 break;
                             /*
                             case 3:
@@ -197,7 +196,7 @@ class CustomerOrder extends DataController
                                 break;
                             case 1: // price is net
                                 $swDetail['priceGross'] = round(Money::AsGross($swDetail['price'],
-                                    $swDetail['taxRate']), 4);
+                                    $swDetail['taxRate']), $precision);
                                 break;
                         }
 
